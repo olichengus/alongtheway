@@ -18,9 +18,10 @@ app.get('/stops', async (req, res) => {
     }
     const { data, error } = await supabase
         .from('trips_routes')
-        .select('stop_name')
+        .select('stop_name, stop_lat, stop_lon, stop_sequence')
         .eq('route_short_name', route_short_name)
-        .eq('direction_id', 0);
+        .eq('direction_id', 0)
+        .order('stop_sequence', { ascending: true });
     if (error) {
         return res.status(500).json({ error: error.message });
     }
