@@ -13,8 +13,14 @@ app.get('/stops', async (req, res) => {
     if (!route_short_name) {
         return res.status(400).json({ error: 'route_short_name is required' });
     }
-    if (route_short_name.length === 2 && Number.isInteger(route_short_name) && parsenInt(route_short_name) < 100) {
-            route_short_name = '0' + route_short_name;
+    console.log(route_short_name);
+    console.log(Number.isInteger(route_short_name));
+    if (Number.isInteger(Number(route_short_name)) && parseInt(route_short_name) < 100) {
+            if (parseInt(route_short_name) < 10) {
+                route_short_name = '00' + route_short_name;
+            } else {
+                route_short_name = '0' + route_short_name;
+            }
     }
     const { data, error } = await supabase
         .from('trips_routes')
