@@ -8,7 +8,9 @@ const supabaseUrl = process.env.SUPABASE_URL;
 const key = process.env.SUPABASE_KEY;  
 const supabase = createClient(supabaseUrl, key);
 
-// gets a bus line or skytrain line name and returns all the stops for that line
+// req:
+// {query: {route_short_name: NAME_OF_BUS_LINE}}
+// res: 
 app.get('/stops', async (req, res) => {
     try {
         let route_short_name = req.query.route_short_name;
