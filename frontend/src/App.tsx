@@ -8,7 +8,7 @@ function App() {
 
   const fetchStops = async () => {
     try {
-      const response = await fetch(`http://localhost:5001/stops?route_short_name=${input}`);
+      const response = await fetch(`http://localhost:5001/stops/?route_short_name=${input}`);
       const data = await response.json();
       if (data.error){
         setErrorMsg(data.error);

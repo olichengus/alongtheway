@@ -1,12 +1,16 @@
 import express from 'express';
 import { createClient } from '@supabase/supabase-js';
 import dotenv from 'dotenv';  
+import cors from 'cors'
+
 
 dotenv.config();  
 const app = express();  
 const supabaseUrl = process.env.SUPABASE_URL;
 const key = process.env.SUPABASE_KEY;  
 const supabase = createClient(supabaseUrl, key);
+app.use(cors());
+
 
 // req:
 // {query: {route_short_name: NAME_OF_BUS_LINE}}
