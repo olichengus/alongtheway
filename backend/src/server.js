@@ -38,7 +38,7 @@ app.get('/stops', async (req, res) => {
             return res.status(500).json({ error: error.message });
         }
         if (data.length === 0) {
-            return res.status(404).json({ error: 'route_short_name not found' });
+            return res.status(404).json({ error: 'route not found' });
         }
         // const stops = await supabase.rpc('get_stops', { route_id: id });
         res.json({ "stops": data});

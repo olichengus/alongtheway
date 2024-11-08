@@ -19,6 +19,7 @@ export default function App() {
       const data = await response.json();
       if (data.error) {
         setErrorMsg(data.error);
+        setStops([]);
         return;
       }
       setStops(data.stops);
@@ -29,7 +30,7 @@ export default function App() {
   };
 
   return (
-    <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY!}>
+    <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY || ""}>
       <div style={{height: "100vh", width: "100%" }}>
         {/* Top-left overlay div */}
         <div
